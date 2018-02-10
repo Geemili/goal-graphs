@@ -1,0 +1,13 @@
+[package]
+name = "goal-graphs"
+version = "0.1.0"
+authors = ["LeRoyce Pearson <leroycepearson@geemili.xyz>"]
+
+[dependencies]
+quicli = "0.1"
+structopt = "0.1"
+serde = "1"
+plotlib ="0.2"
+regex = "0.2"
+lazy_static = "1"
+toml = "0.4"
