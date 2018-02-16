@@ -19,7 +19,7 @@ goal = 90.0
 data = "lose-weight.csv"
 ----
 
-You can add as many `[[goals]]` sections as you like.
+You can add as many `\[[goals]]` sections as you like.
 
 Track your data in a CSV file for a few days:
 
