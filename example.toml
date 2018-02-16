@@ -1,0 +1,5 @@
+[[goals]]
+name = "Weight"
+aim = "decrease"
+goal = 90.0
+data = "lose-weight.csv"

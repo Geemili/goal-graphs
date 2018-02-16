@@ -1,0 +1,107 @@
+= Goal Graphs
+
+This CLI app helps you meet your goals by plotting your progress.
+
+== Usage
+
+Create an index toml file.
+Add a section like the following to it:
+
+.index.toml
+[source,toml]
+----
+[[goals]]
+name = "Weight"
+aim = "decrease"
+goal = 90.0
+
+# Data files should be relative to `index.toml`
+data = "lose-weight.csv"
+----
+
+You can add as many `[[goals]]` sections as you like.
+
+Track your data in a CSV file for a few days:
+
+.lose-weight.csv
+[source,csv]
+----
+day,weight (kg)
+2018w01pa,92.4
+2018w02mu,91.5
+2018w03ze,90.4
+2018w04pa,91.5
+2018w04re,92.9
+2018w04ci,91.3
+----
+
+And then run the program by passing it `index.toml`!
+
+[source]
+----
+$ cargo run -- index.toml 
+    Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+     Running `target/debug/goal-graphs example.toml`
+GoalConfig { name: "Weight", data: "lose-weight.csv", aim: "decrease", goal: 90 }
+day	weight (kg)
+   |                                                 ●                                        
+   |                                                                                          
+   |                                                                                          
+   |                                                                                          
+   |                                                                                          
+94-|                                                                                          
+   |                                                                                          
+   |                                                                                          
+   |                                                                                          
+   |                                                                                          
+   |                                                                                          
+   |                                                                                          
+93-|                                                                                          
+   |                                           ●                                              
+   |                                                                                          
+   |                                                                                          
+   |                                                                     ●             ●   ●  
+   |                                                                                          
+   |                                               ●                   ●                     ●
+92-|                                                                                          
+   |                                                             ●                       ●    
+   |                                                                                          
+   |                                                         ● ●                              
+   |                     ●                   ●         ●                                      
+   |                                             ●     ●                                      
+   |                                                                                          
+91-|                                                                                          
+   |                                                                                          
+   |                                                                                          
+   |                                                                                          
+   +------------------------------------------------------------------------------------------ 
+             |                   |                   |                   |                   | 
+          748690              748700              748710              748720              74873
+----
+
+== Example
+
+`example.toml` and `lose-weight.csv` are example files.
+Run the example using the following command:
+
+[source]
+----
+$ cargo run -- example.toml
+----
+
+== QA
+
+[quote]
+----
+What's up with the dates formatted like `2018w05blah`?
+----
+
+Oh!
+Sorry.
+I like to think in terms of weeks and days, so I started using the date format `<YYYY>w<week number><day number>`.
+
+The `pa`, `re`, `ci` words are numbers in link:http://www.languagesandnumbers.com/how-to-count-in-lojban/en/jbo/[lojban].
+
+Days are numbered from `pa` to `ze`; `pa` being monday, `ze` being Sunday.
+
+Right now this is the only format that is accepted, but I plan on allowing regular dates soon™.
